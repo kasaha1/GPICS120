@@ -60,11 +60,15 @@ shinyUI(fluidPage(
                      )
                      
             ),
-            tabPanel("Analysis Graph",
+            tabPanel("Analysis Summary",
+                     h3(textOutput("preparation")),
                      plotlyOutput("resultPiePlot"),
                      plotlyOutput("resultSummaryPlot")
             ),
-            tabPanel("Analysis table",
+            tabPanel("Analysis Results",
+                     h3(textOutput("preparation2")),
+                     br(),br(),
+                     plotlyOutput("resultHeatmapPlot"),
                      tableOutput("tablesTemp"),
             )
             

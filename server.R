@@ -110,6 +110,9 @@ shinyServer(function(input, output) {
     })
     # event reactive
     DoPIC100prediction <- eventReactive(input$doPrediction, {
+        output$preparation <- renderText("")
+        output$preparation2 <- renderText("")
+        
         testX <- reactiveDataStandardization()
         print("prediction start")
         
@@ -154,7 +157,24 @@ shinyServer(function(input, output) {
             )
         return(res.table)
     })
-    
+    reavticResultHeatmapPlot <- reactive({
+        dataPlotly <- DoPIC100prediction()
+        dataRaw <- reactiveDataStandardization()
+        
+        data.sample.order <- dataPlotly %>% arrange(Class,posterior) 
+        data.sample.order.vector <- data.sample.order[,1] %>% as.character()
+        data.sample.order.labels <- data.sample.order %>% mutate(labels=paste(Class,":",Sample))
+        data.sample.order.labels <- data.sample.order.labels$labels %>% as.vector()
+        
+        data.heatmap <- dataRaw 
+        
+        data.heatmap <- data.heatmap[rev(1:nrow(data.heatmap)),data.sample.order.vector]
+        
+        
+        fig <- plot_ly(z = data.heatmap, type = "heatmap",colors = colorRamp(c("#009900","#00FF00","black","#FF0000","#990000")),y=rev(Genenames),x=data.sample.order.labels, zauto = FALSE, zmin = -4, zmax = 4) %>% layout(title="The Heatmap of your dataset",font=list(family="Arial"),xaxis=list(tickangle=45))
+        
+        return(fig)
+    })
     # output
     output$downloadResults <- downloadHandler(
         filename = function() {
@@ -170,4 +190,7 @@ shinyServer(function(input, output) {
     output$tablesTemp <- renderTable(DoPIC100prediction())
     output$resultSummaryPlot <- renderPlotly(reavticResultSummaryPlot())
     output$resultPiePlot <- renderPlotly(reavticResultPiePlot())
+    output$resultHeatmapPlot <- renderPlotly(reavticResultHeatmapPlot())
+    output$preparation <- renderText("Insert Your Dataset")
+    output$preparation2 <- renderText("Insert Your Dataset")
 })

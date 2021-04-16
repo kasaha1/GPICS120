@@ -9,6 +9,7 @@
 
 library(shiny)
 library(plotly)
+library(heatmaply)
 
 library(BiocManager)
 options(repos = BiocManager::repositories())

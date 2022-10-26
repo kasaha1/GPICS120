@@ -83,7 +83,7 @@ shinyUI(fluidPage(
           HTML(
             "&nbsp; <p>Hi. This is the prediction tool for the analysis of gastric cancer subtype using mRNA expression data.</p><p>Just upload your dataset. And press the prediction button. That's all. You can download example dataset from"
           ),
-          tags$a(href = "https://raw.githubusercontent.com/kasaha1/GPICS120/main/www/testDataset/Test.433.STD.txt", " here"),
+          tags$a(href = "https://github.com/kasaha1/GPICS120/blob/main/www/testDataset/Test.433.STD.txt", " here"),
           HTML("or the below button."),
           br(),
           downloadButton('downloadExample', 'Download Example dataset'),

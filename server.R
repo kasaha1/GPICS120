@@ -269,7 +269,7 @@ shinyServer(function(input, output) {
       "testMatrix.txt"
     },
     content = function(file) {
-      contents.table <- fread("./www/testDataset/testMatrix.txt")
+      contents.table <- fread("./www/testDataset/Test.433.STD.txt")
       write_delim(contents.table, file, delim = "\t", na = "")
     },
     contentType = "text/plain"

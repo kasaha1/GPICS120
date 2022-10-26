@@ -73,14 +73,6 @@ shinyUI(fluidPage(
         
         tabPanel(
           "Your results",
-          h4("GPICS120 classification"),
-          img(
-            src = "Fig1.png",
-            width = 350,
-            height = 300
-          ),
-          br(),
-          br(),
           h3(textOutput("preparation2")),
           plotlyOutput("resultHeatmapPlot") %>% withSpinner(color =
                                                               "#0dc5c1"),
@@ -91,7 +83,7 @@ shinyUI(fluidPage(
           HTML(
             "&nbsp; <p>Hi. This is the prediction tool for the analysis of gastric cancer subtype using mRNA expression data.</p><p>Just upload your dataset. And press the prediction button. That's all. You can download example dataset from"
           ),
-          tags$a(href = "https://raw.githubusercontent.com/kasaha1/GPICS120/main/www/testDataset/testMatrix.txt", " here"),
+          tags$a(href = "https://raw.githubusercontent.com/kasaha1/GPICS120/main/www/testDataset/Test.433.STD.txt", " here"),
           HTML("or the below button."),
           br(),
           downloadButton('downloadExample', 'Download Example dataset'),
@@ -113,10 +105,15 @@ shinyUI(fluidPage(
             "<p>Gastric cancer (GC) is heterogeneous lethal disease in genomic and clinical level. By integrating 8 previously established genomic signatures for GC subtypes,<b> we identified 6 clinically and molecularly distinct genomic consensus subtypes (CGS)</b>. CGS1 is characterized by poorest prognosis, very high stem cell characteristics, and high IGF1 expression, but low genomic alterations.  CGS2 showed canonical epithelial gene expression patterns. CGS3 and CGS4 are characterized by high copy number alterations and low immune activity. However, CGS3 and CGS4 are different in high HER2 activation (CGS3) and SALL4 and KRAS activation (CSG4). CGS5 has highest mutation burden and moderately high immune activity that is characteristics of MSI-high tumors. Most of CGS6 tumors are EBV-positive and shows extremely high methylation and high immune activity.</p> "
           ),
           img(
-            src = "Fig2.png",
-            width = 500,
+            src = "Fig3.png",
+            width = 600,
             height = 600
-          )
+          ),
+          HTML(
+            "<p>In addition, we introduce <b>PICS100</b>, a subtype prediction system for hepatocellular carcinoma that was developed in our laboratory.You can get it at"
+          ),
+          tags$a(href = "https://kasaha1.shinyapps.io/pics100/", " this link"),
+          HTML("</p>")
         )
       )
     )
